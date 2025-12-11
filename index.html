@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelajah Pesona Budaya Sidoarjo: Pusaka Delta Brantas</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* NEW: Smooth Scrolling untuk perpindahan navigasi in-page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- CSS Internal untuk Tampilan --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        /* Navigasi */
+        nav {
+            background-color: #34495e; 
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            /* NEW: Transisi lebih lengkap */
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; 
+            border-bottom: 2px solid #3498db;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50; 
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+        }
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Callout / Blok Sorotan */
+        .callout {
+            background-color: #e6f3ff; 
+            border-left: 5px solid #3498db; 
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        .callout strong {
+            color: #2c3e50;
+        }
+
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+        
+        /* GRID ITEM - Pengembangan Interaktivitas Kartu */
+        .grid-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            /* NEW: Transisi dan Kursor */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; 
+            cursor: pointer; 
+        }
+
+        /* Perbaikan: Menggunakan kelas .grid-item:hover sebagai pengganti elemen a */
+        .grid-item:hover {
+            transform: translateY(-8px); /* Mengangkat lebih tinggi */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Bayangan lebih kuat */
+        }
+        
+        .grid-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        .item-content {
+            padding: 20px;
+        }
+        .item-content h3 {
+            color: #3498db; 
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .item-content ul {
+            padding-left: 20px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .flex-container > div {
+            flex: 1 1 calc(33% - 30px); 
+            min-width: 300px; 
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        /* CTA BUTTON - Pengembangan Animasi Kilau */
+        #pelestarian button {
+            /* Gaya Dasar */
+            padding: 12px 25px; 
+            background-color: #e74c3c; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 1.1em; 
+            margin-top: 20px;
+
+            /* Animasi */
+            position: relative;
+            overflow: hidden; 
+            z-index: 1; 
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+        
+        #pelestarian button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: skewX(-45deg);
+            transition: left 0.5s ease-out;
+            z-index: -1;
+        }
+
+        #pelestarian button:hover::after {
+            left: 100%; /* Gerakan kilau */
+        }
+
+        #pelestarian button:hover {
+            background-color: #c0392b !important;
+            transform: translateY(-2px);
+        }
+
+        /* NEW: FITUR PENCARIAN & FILTER (Disesuaikan dengan Palet) */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ffffff; 
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-input {
+            flex-grow: 1; 
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            min-width: 250px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db; 
+            outline: none;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        /* NEW: MODAL OVERLAY (Untuk Detail Item) */
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); 
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal-overlay.active {
+            display: flex; /* Memastikan modal terlihat */
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #e74c3c; /* Warna merah yang jelas */
+        }
+
+        /* DIHILANGKAN: styling untuk placeholder (Karena sudah tidak digunakan) 
+        .placeholder-item {
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            opacity: 0.7;
+        }
+        .placeholder-item .item-content h3 {
+             color: #6c7a89;
+        } */
+
+        @media (max-width: 768px) {
+            .flex-container > div {
+                flex: 1 1 calc(50% - 30px); 
+            }
+            nav ul li {
+                display: block;
+                margin: 5px 0;
+            }
+            /* NEW: Responsif Filter Bar */
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-input, .filter-select {
+                min-width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .flex-container > div {
+                flex: 1 1 100%;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Sidoarjo Pusaka Delta Brantas 🐟</h1>
+            <p>Menjelajahi Kekayaan Identitas dan Kearifan Tradisional Kota Udang</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#pengantar">Konsep Inti</a></li>
+                <li><a href="#wujud-material">Material (1-3)</a></li>
+                <li><a href="#wujud-nonmaterial">Non-Material (4-5)</a></li>
+                <li><a href="#wujud-aksi">Aksi (6-9)</a></li> <li><a href="#pelestarian">Pelestarian</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <section id="pengantar">
+            <h2 class="section-title">Konsep Inti Budaya Sidoarjo</h2>
+            <p style="text-align: center;">Sidoarjo adalah wilayah delta yang kaya, dimana kebudayaan lokalnya dipengaruhi kuat oleh ekosistem air payau (tambak), warisan sejarah Majapahit, dan nilai gotong royong masyarakat pesisir. Berikut 9 pilar konsep kebudayaan Sidoarjo.</p>
+        </section>
+
+        <div class="callout">
+            <p><strong>Fakta Budaya:</strong> Sidoarjo sering disebut Kota Udang dan Bandeng. Kehidupan nelayan dan petambak inilah yang melahirkan kearifan lokal unik, termasuk cara mereka mengolah hasil bumi dan membangun komunitas yang solid (Seduluran Nambak).</p>
+        </div>
+
+        <section id="wujud-material">
+            <h2 class="section-title">Pilar I: Wujud Material (Tangible Culture)</h2>
+            <p style="text-align: center;">Warisan fisik yang menjadi ikon kota, mulai dari seni rupa hingga kuliner khas delta (Poin 1-3).</p>
+            
+            <div class="filter-bar">
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari Koleksi (Bandeng, Batik, Kuliner)...">
+                <select id="filterSelect" class="filter-select">
+                    <option value="">Semua Kategori</option>
+                    <option value="Festival">Festival</option>
+                    <option value="Pameran">Pameran</option>
+                    <option value="Kuliner">Kuliner</option>
+                    <option value="Ritual">Ritual</option> 
+                    <option value="Sejarah">Sejarah</option> 
+                    <option value="Seni">Seni</option> </select>
+            </div>
+            
+            <div class="flex-container" id="koleksiGrid">
+                
+                <div class="grid-item" data-category="Festival" data-title="Pesta Delta Bandeng" onclick="openModal('bandeng', event)">
+                    <img src="https://cdn.antaranews.com/cache/1200x800/2024/04/09/IMG-20240409-WA0015.jpg" 
+                        alt="Gambar Pesta Bandeng" 
+                        title="Festival Bandeng dan Tarian Pesisir">
+                    <div class="item-content">
+                        <h3>1. Festival Seni & Tradisi: "Pesta Delta Bandeng"</h3>
+                        <p>Menggabungkan produk unggulan Sidoarjo, yaitu Bandeng, dengan seni pertunjukan lokal.</p>
+                        <ul>
+                            <li>Fokus: Lomba Hias Bandeng, Tari "Tirta Brantas", Arak-arakan Lontong Balap.</li>
+                            <li>Nilai: Ketahanan dan Kesuburan.</li>
+                        </ul>
+                        <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-category="Pameran" data-title="Sentra Batik Jetis" onclick="openModal('batik', event)">
+                    <img src="https://cdn.rri.co.id/berita/19/images/1693793003579-I/1693793003579-I.jpeg"
+                        alt="Gambar proses membatik di Jetis"
+                        title="Batik Tulis Jetis Sidoarjo">
+                    <div class="item-content">
+                        <h3>2. Pameran Warisan: "Museum Hidup Sentra Batik Jetis"</h3>
+                        <p>Mengangkat Batik Tulis Jetis sebagai warisan yang dilestarikan melalui edukasi dan ekonomi kreatif.</p>
+                        <ul>
+                            <li>Fokus: Workshop "Membatik di Atas Lumpur", Pameran Evolusi Motif Udang/Bandeng.</li>
+                            <li>Nilai: Kreativitas dan Keterhubungan Sejarah.</li>
+                        </ul>
+                        <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-category="Kuliner" data-title="Dapur Legenda Sidoarjo" onclick="openModal('kuliner', event)">
+                    <img src="https://ik.imagekit.io/tvlk/blog/2023/09/lontong-kikil.jpg"
+                        alt="Gambar Kupang Lontong Sidoarjo"
+                        title="Kuliner Khas Nusantara Sidoarjo">
+                    <div class="item-content">
+                        <h3>3. Pengembangan Kuliner Lokal: "Dapur Legenda Sidoarjo"</h3>
+                        <p>Mempromosikan dan mensertifikasi kuliner khas Sidoarjo yang otentik, seperti Kupang Lontong dan Petis Udang.</p>
+                        <ul>
+                            <li>Fokus: Lomba Kreasi Kuliner Berbasis Petis, Sertifikasi Warung 'Legend Sidoarjo'.</li>
+                            <li>Nilai: Kearifan Lokal dan Cita Rasa Otentik.</li>
+                        </ul>
+                        <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="wujud-nonmaterial" style="margin-top: 50px;">
+            <h2 class="section-title">Pilar II: Wujud Non-Material (Intangible Culture)</h2>
+            <p style="text-align: center;">Nilai, norma, ritual, dan pengetahuan yang membentuk jiwa masyarakat Sidoarjo (Poin 4 dan 5).</p>
+
+            <div class="flex-container">
+                
+                <div class="grid-item" data-category="Sastra" data-title="Mocopat Parikan" onclick="openModal('sastra', event)">
+                    <img src="https://njombangan.com/wp-content/uploads/2018/07/Program-Njombangan-Berbagi1.png"
+                        alt="Gambar sastra lisan Jawa"
+                        title="Sastra Lisan Sidoarjo">
+                    <div class="item-content">
+                        <h3>4. Pelestarian Bahasa & Sastra: "Mocopat & Parikan Pesisir"</h3>
+                        <p>Menghidupkan kembali tradisi sastra lisan Sidoarjo yang dipengaruhi dialek Arek, yaitu Mocopat dan Parikan (pantun lisan).</p>
+                        <ul>
+                            <li>Fokus: Lomba Parikan Digital, Pertemuan Mocopat Malam Selasanan.</li>
+                            <li>Nilai: Komunikasi Lisan dan Identitas Bahasa Lokal.</li>
+                        </ul>
+                        <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-category="Pengetahuan" data-title="Kearifan Tambak" onclick="openModal('tambak', event)">
+                    <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/218/2024/12/09/ok-foto-garam-1183583715.jpg"
+                        alt="Petani tambak Sidoarjo sedang memanen hasil laut"
+                        title="Mengangkat pengetahuan tradisional masyarakat Sidoarjo dalam mengelola lingkungan delta yang rentan terhadap air payau dan musim.">
+                    <div class="item-content">
+                        <h3>5. Sistem Pengetahuan Lokal: "Kearifan Tambak & Petani Garam"</h3>
+                        <p>Perayaan dan ritual yang menandai fase kehidupan dan hubungan manusia dengan alam.</p>
+                        <ul>
+                            <li>Fokus: Dokumentasi Etnografi Istilah Laut Lokal, Pendidikan Publik Siklus Air Payau.</li>
+                            <li>Nilai: Adaptasi Lingkungan dan Sustainabilitas.</li>
+                        </ul>
+                        <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="wujud-aksi" style="margin-top: 50px;">
+             <h2 class="section-title">Pilar III: Wujud Lingkungan & Aksi (Poin 6-9)</h2>
+             <p style="text-align: center;">Bagian ini memuat sisa empat pilar, berfokus pada arsitektur, ritual, dan aksi kolektif masyarakat Sidoarjo.</p>
+
+             <div class="flex-container">
+                 
+                 <div class="grid-item" data-category="Ritual" data-title="Ritual Sedekah Laut" onclick="openModal('sedekah-laut', event)">
+                     <img src="https://asset.kompas.com/crops/CrjEqH87mrWhLIxcR7lZGxNndf0=/0x0:640x427/1200x800/data/photo/2023/07/15/64b2504717553.jpeg" alt="Sedekah Laut Sidoarjo">
+                     <div class="item-content">
+                         <h3>6. Ritual Komunitas: "Sedekah Laut & Petik Laut"</h3>
+                         <p>Ritual tahunan sebagai ungkapan syukur nelayan dan petambak, berpusat di kawasan pesisir (Kenjeran/Waru).</p>
+                         <ul>
+                             <li>Fokus: Tradisi Sesaji, Tarian Pesisir, Doa Bersama.</li>
+                             <li>Nilai: Syukur dan Harmoni Alam.</li>
+                         </ul>
+                         <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                     </div>
+                 </div>
+
+                 <div class="grid-item" data-category="Sejarah" data-title="Arsitektur Kota Tua" onclick="openModal('arsitektur', event)">
+                     <img src="data:image/jpeg;base64,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" alt="Bangunan Kota Tua Sidoarjo">
+                     <div class="item-content">
+                         <h3>7. Arsitektur Warisan: "Jejak Kota Tua Sidoarjo"</h3>
+                         <p>Melindungi dan mendokumentasikan bangunan bersejarah di pusat kota yang dipengaruhi gaya Kolonial dan Tiongkok.</p>
+                         <ul>
+                             <li>Fokus: Pelestarian Cagar Budaya, Jalur Sepeda Sejarah.</li>
+                             <li>Nilai: Identitas Ruang Kota.</li>
+                         </ul>
+                         <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                     </div>
+                 </div>
+
+                 <div class="grid-item" data-category="Seni" data-title="Seni Kontemporer Lumpur" onclick="openModal('seni-lumpur', event)">
+                     <img src="https://images-tm.tempo.co/all/2025/06/13/888876/888876_1200.jpg">
+                     <div class="item-content">
+                         <h3>8. Seni Kontemporer: "Aksi Kolektif & Memori Lumpur"</h3>
+                         <p>Menggunakan seni untuk merefleksikan bencana, trauma, dan ketahanan masyarakat (Lumpur Lapindo).</p>
+                         <ul>
+                             <li>Fokus: Mural, Patung dari Tanah/Lumpur, Teater.</li>
+                             <li>Nilai: Refleksi dan Ketahanan Sosial.</li>
+                         </ul>
+                         <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                     </div>
+                 </div>
+                 
+                 <div class="grid-item" data-category="Ritual" data-title="Upacara Panggih Manten" onclick="openModal('panggih-manten', event)">
+                     <img src="https://assets-a1.kompasiana.com/items/album/2019/01/28/rewang-5c4ed794aeebe104a859af84.jpg" alt="Upacara Panggih Manten">
+                     <div class="item-content">
+                         <h3>9. Nilai Sentral: "Gotong Royong & Panggih Manten"</h3>
+                         <p>Meskipun Gotong Royong (Seduluran Nambak) adalah nilai, ia diwujudkan dalam acara besar seperti Panggih Manten (Pernikahan) dan kerja bakti.</p>
+                         <ul>
+                             <li>Fokus: Solidaritas Komunitas, Musyawarah Adat.</li>
+                             <li>Nilai: Persatuan dan Kebersamaan.</li>
+                         </ul>
+                         <a href="javascript:void(0)" style="color: #3498db; display: block; margin-top: 10px; font-weight: bold;">Lihat Detail 🡲</a>
+                     </div>
+                 </div>
+                 
+             </div>
+             
+             <div class="callout" style="margin-top: 30px;">
+                 <p style="text-align: center;">Gotong Royong (Seduluran Nambak) adalah nilai inti yang menggerakkan semua pilar, ditandai dengan kerja sama dan solidaritas di wilayah tambak dan delta.</p>
+             </div>
+         </section>
+
+
+        <section id="pelestarian" style="margin-top: 50px; text-align: center;">
+            <h2 class="section-title">Membangun Sidoarjo Berakar Budaya</h2>
+            <p>Budaya lokal adalah cerminan identitas kita. Dengan melestarikan dan mengembangkan sembilan pilar ini, kita tidak hanya menghargai masa lalu, tetapi juga membangun masa depan yang berakar kuat pada nilai-nilai luhur dan kearifan delta. Mari bersama menjaga kekayaan ini!</p>
+            <button onclick="alert('Pelestarian adalah Tanggung Jawab Bersama Warga Sidoarjo!')">
+                Dukung Pengembangan Budaya Sidoarjo
+            </button>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Projek Inspirasi Budaya Lokal Sidoarjo. Dibuat dengan semangat Seduluran.</p>
+        </div>
+    </footer>
+
+    <div id="itemModal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+            <h4 id="modal-title" style="color: #2c3e50; font-size: 1.8em;">Judul Detail</h4>
+            <hr style="margin: 15px 0;">
+            <p id="modal-content-text" style="color: #555;"></p>
+            <p style="margin-top: 25px;"><a id="modal-link" href="#" target="_blank" style="background-color: #3498db; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Kunjungi Sentra Informasi</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Data simulasi untuk Modal (DITAMBAH PROPERTI 'URL' & ITEM BARU)
+        const itemData = {
+            'bandeng': {
+                title: "Detail Pesta Delta Bandeng",
+                text: "Festival tahunan yang merayakan hasil tambak utama Sidoarjo. Acara ini mencakup lelang bandeng super, tarian tradisional yang terinspirasi dari gerakan ikan, dan pertunjukan rakyat yang ramai.",
+                url: "https://www.sidoarjokab.go.id/berita/agenda/1698976178/0" 
+            },
+            'batik': {
+                title: "Detail Batik Tulis Jetis",
+                text: "Batik Jetis adalah warisan kriya yang telah ada sejak era Majapahit, diadaptasi dengan motif udang dan bandeng yang melambangkan kekayaan delta. Prosesnya masih menggunakan canting dan pewarna alami yang khas dari sentra Jetis.",
+                url: "https://sidita.disbudpar.jatimprov.go.id/destinasi/detail/63ccc071f9f3ed51fab39c099d42348fc2783fa3a8339339f75e58f2e6511ec8a4c1623507886756d7b36c2e7e125a4e82005099d181965ec75570656343ffcb" 
+            },
+            'kuliner': {
+                title: "Detail Dapur Legenda Sidoarjo (Kupang Lontong)",
+                text: "Kuliner ikonik Kupang Lontong menjadi sorotan. Dapur Legenda bertujuan mensertifikasi resep otentik yang menggunakan Petis Udang Sidoarjo terbaik, disajikan dengan lentho dan sate kerang.",
+                url: "https://id.wikipedia.org/wiki/Lontong_kupang" 
+            },
+            'sastra': {
+                title: "Detail Mocopat & Parikan Pesisir",
+                text: "Sastra lisan ini adalah bentuk pantun dan puisi tradisional yang mengandung humor, sindiran sosial, dan nilai-nilai lokal. Program ini melestarikan tradisi lisan di kalangan generasi muda Sidoarjo.",
+                url: "https://www.google.com/search?q=Mocopat+Parikan+Sidoarjo" 
+            },
+            'tambak': {
+                title: "Detail Kearifan Tambak & Petani Garam",
+                text: "Pengetahuan tradisional tentang siklus air payau, waktu terbaik menabur benih, dan teknik panen garam yang ramah lingkungan. Pengetahuan ini adalah kunci adaptasi masyarakat terhadap ekosistem delta.",
+                url: "https://www.google.com/search?q=Kearifan+Lokal+Tambak+Sidoarjo" 
+            },
+            // DATA BARU UNTUK PILAR III
+            'sedekah-laut': {
+                title: "Detail Ritual Sedekah Laut & Petik Laut",
+                text: "Ritual Sedekah Laut adalah bentuk rasa syukur masyarakat pesisir Sidoarjo (terutama di wilayah timur) kepada Tuhan atas hasil laut yang melimpah. Prosesi ini biasanya melibatkan pelarungan sesaji ke laut.",
+                url: "https://www.google.com/search?q=Sedekah+Laut+Sidoarjo"
+            },
+            'arsitektur': {
+                title: "Detail Arsitektur Kota Tua Sidoarjo",
+                text: "Area Pecinan dan bangunan tua di Sidoarjo menyimpan jejak sejarah perdagangan. Arsitektur yang dominan mencerminkan perpaduan gaya Kolonial Belanda dan tradisi arsitektur Tiongkok kuno.",
+                url: "https://www.google.com/search?q=Kota+Tua+Sidoarjo"
+            },
+            'seni-lumpur': {
+                title: "Detail Seni Kontemporer Lumpur",
+                text: "Seni ini merupakan ekspresi kolektif seniman lokal untuk memproses tragedi Lumpur Lapindo. Karya-karya yang dihasilkan berfungsi sebagai monumen memori dan simbol ketahanan (resilience) masyarakat.",
+                url: "https://www.google.com/search?q=Seni+Lumpur+Lapindo"
+            },
+            'panggih-manten': {
+                title: "Detail Nilai Sentral Gotong Royong & Panggih Manten",
+                text: "Nilai Gotong Royong ('Seduluran Nambak') tercermin dalam keseriusan dan partisipasi kolektif masyarakat dalam acara besar seperti Panggih Manten (pertemuan pengantin adat Jawa). Ini menunjukkan kuatnya ikatan sosial Sidoarjo.",
+                url: "https://www.google.com/search?q=Gotong+Royong+Sidoarjo"
+            }
+        };
+
+        // 1. FUNGSI MODAL (DIPERBARUI)
+        function openModal(itemKey, event) {
+            // Mencegah navigasi ke '#'
+            if (event) event.preventDefault();
+            
+            // Cek apakah data item tersedia, jika tidak, jangan buka modal
+            if (!itemData[itemKey]) {
+                alert("Konten detail untuk item ini belum tersedia.");
+                return;
+            }
+            
+            const modal = document.getElementById('itemModal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content-text');
+            const link = document.getElementById('modal-link'); 
+
+            if (itemData[itemKey]) {
+                title.textContent = itemData[itemKey].title;
+                content.textContent = itemData[itemKey].text;
+                link.href = itemData[itemKey].url; 
+                
+                modal.classList.add('active'); 
+                document.body.style.overflow = 'hidden'; // Kunci scroll di body
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('itemModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Buka kembali scroll body
+        }
+
+
+        // 2. FUNGSI FILTER DAN PENCARIAN (Disesuaikan dengan item baru)
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const filterSelect = document.getElementById('filterSelect');
+            const gridItems = document.querySelectorAll('.grid-item');
+
+            function applyFilters() {
+                const searchText = searchInput.value.toLowerCase();
+                const selectedCategory = filterSelect.value;
+
+                gridItems.forEach(item => {
+                    const itemTitle = item.getAttribute('data-title').toLowerCase();
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    const matchesSearch = itemTitle.includes(searchText);
+                    const matchesCategory = selectedCategory === "" || itemCategory === selectedCategory;
+
+                    if (matchesSearch && matchesCategory) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Tambahkan event listeners
+            searchInput.addEventListener('input', applyFilters);
+            filterSelect.addEventListener('change', applyFilters);
+            
+        });
+
+    </script>
+</body>
+</html>
